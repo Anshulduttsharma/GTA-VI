@@ -30,21 +30,24 @@ function App() {
     });
   });
 
-  useGSAP(()=>{
+  useGSAP(() => {
+    if(!showContent) return;
+
     const main = document.querySelector(".main");
-    main?.addEventListener("mousemove", function(e){
-      const xMove = (e.clientX/ window.innerWidth - 0.5) * 40
+    
+    main?.addEventListener("mousemove", function (e) {
+      const xMove = (e.clientX / window.innerWidth - 0.5) * 40;
       gsap.to(".imagesdiv .text", {
-        x: `${xMove * 0.7}%`
+        x: `${xMove * 0.7}%`,
       });
       gsap.to(".sky", {
-        x: xMove
+        x: xMove,
       });
       gsap.to(".bg", {
-        x: xMove * 1
+        x: xMove * 1,
       });
-    })
-  },[showContent]);
+    });
+  }, [showContent]);
 
   return (
     <>
@@ -128,10 +131,42 @@ function App() {
               />
             </div>
           </div>
-          <div className="w-full h-screen bg-black"></div>
+          <div className="w-full px-10 h-screen flex items-center justify-center bg-black">
+            <div className="cntnr flex  text-white w-full h-[80%]">
+              <div className="limg relative h-full w-1/2">
+                <img
+                  className="absolute top-1/2 scale-[0.8] left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  src="./imag.png"
+                  alt="imag"
+                />
+              </div>
+              <div className="rg w-[35%]">
+                <h1 className="text-7xl">Still Running</h1>
+                <p className="mt-10 text-xl font-[Helvetica_Now_Display]">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Numquam error nam earum recusandae soluta ab, at architecto
+                  reprehenderit dolore quam neque, fuga optio!
+                </p>
+                <p className="mt-3 text-xl font-[Helvetica_Now_Display]">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                  minima consequatur dignissimos rerum illum possimus obcaecati
+                  vel vitae hic illo dicta fuga, enim pariatur, accusantium
+                  voluptate fugiat nam eius. Iste eos ullam recusandae
+                  repudiandae eligendi.
+                </p>
+                <p className="mt-3 text-xl font-[Helvetica_Now_Display]">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Minus obcaecati ex possimus eveniet eaque voluptatum dolorum
+                  sunt temporibus incidunt nulla.
+                </p>
+                <button className="bg-yellow-500 mt-5 text-black px-5 py-5 text-3xl">
+                  Download
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
-
     </>
   );
 }
