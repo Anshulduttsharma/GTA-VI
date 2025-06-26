@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import "remixicon/fonts/remixicon.css";
 
 function App() {
   let [showContent, setShowContent] = useState(false);
@@ -28,6 +29,23 @@ function App() {
       },
     });
   });
+
+  useGSAP(()=>{
+    const main = document.querySelector(".main");
+    main?.addEventListener("mousemove", function(e){
+      const xMove = (e.clientX/ window.innerWidth - 0.5) * 40
+      gsap.to(".imagesdiv .text", {
+        x: `${xMove * 0.7}%`
+      });
+      gsap.to(".sky", {
+        x: xMove
+      });
+      gsap.to(".bg", {
+        x: xMove * 1
+      });
+    })
+  },[showContent]);
+
   return (
     <>
       <div className="svg flex items-center justify-center fixed top-0 left-0 z-[100] w-full h-screen overflow-hidden bg-[#000]">
@@ -69,29 +87,51 @@ function App() {
                   <div className="w-8 h-2 bg-white"></div>
                   <div className="w-5 h-2 bg-white"></div>
                 </div>
-                <h3 className="text-4xl leading-none -mt-[8px] text-white">Rockstar</h3>
+                <h3 className="text-4xl leading-none -mt-[8px] text-white">
+                  Rockstar
+                </h3>
               </div>
             </div>
             <div className="imagesdiv relative overflow-hidden w-full h-screen bg-red">
               <img
-                className="w-full h-full object-cover absolute top-0 left-0"
+                className="w-full sky scale-[1.2] h-full object-cover absolute top-0 left-0"
                 src="./sky.png"
                 alt=""
               />
               <img
-                className="w-full h-full object-cover absolute top-0 left-0"
+                className="w-full bg scale-[1.3] h-full object-cover absolute top-0 left-0"
                 src="./bg.png"
                 alt=""
               />
+              <div className="text-white absolute flex flex-col gap-1  top-0 -translate-x-1/2 left-1/2">
+                <h1 className="text-[8rem] text leading-none -ml-40">grand</h1>
+                <h1 className="text-[8rem] text leading-none ml-40">theft</h1>
+                <h1 className="text-[8rem] text leading-none -ml-20">auto</h1>
+              </div>
               <img
-                className="absolute -bottom-[50%] left-1/2 -translate-x-1/2 w-[40%]"
+                className="absolute character -bottom-[50%] left-1/2 -translate-x-1/2 w-[40%]"
                 src="./girlbg.png"
                 alt=""
               />
             </div>
+            <div className="btmbar text-white absolute bottom-0 left-0 w-full py-15 px-10 bg-gradient-to-t from-black to-transparent">
+              <div className="flex gap-4 items-center">
+                <i className="text-4xl ri-arrow-down-line"></i>
+                <h3 className="text-xl font-[Helvetica_Now_Display]">
+                  Scroll down
+                </h3>
+              </div>
+              <img
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[65px]"
+                src="./ps5.png"
+                alt=""
+              />
+            </div>
           </div>
+          <div className="w-full h-screen bg-black"></div>
         </div>
       )}
+
     </>
   );
 }
