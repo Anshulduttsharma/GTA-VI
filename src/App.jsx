@@ -31,10 +31,39 @@ function App() {
   });
 
   useGSAP(() => {
-    if(!showContent) return;
+    if (!showContent) return;
 
+    gsap.to(".main", {
+      scale: 1,
+      rotate: 0,
+      duration: 2,
+      delay: "-0.99",
+      ease: "Expo.easeInOut",
+    });
+    gsap.to(".sky", {
+      scale: 1.1,
+      rotate: 0,
+      duration: 2,
+      delay: "-0.8",
+      ease: "Expo.easeInOut",
+    });
+    gsap.to(".bg", {
+      scale: 1.1,
+      rotate: 0,
+      duration: 2,
+      delay: "-0.8",
+      ease: "Expo.easeInOut",
+    });
+    gsap.to(".character", {
+      scale: 1,
+      bottom:"-45%",
+      rotate: 0,
+      duration: 2,
+      delay: "-0.8",
+      ease: "Expo.easeInOut",
+    });
     const main = document.querySelector(".main");
-    
+
     main?.addEventListener("mousemove", function (e) {
       const xMove = (e.clientX / window.innerWidth - 0.5) * 40;
       gsap.to(".imagesdiv .text", {
@@ -81,8 +110,8 @@ function App() {
         </svg>
       </div>
       {showContent && (
-        <div className="main w-full">
-          <div className="landing w-full bg-black h-screen">
+        <div className="main w-full rotate-[-5deg] scale-[1.5]">
+          <div className="landing overflow-hidden relative w-full bg-black h-screen">
             <div className="navbar absolute top-0 left-0 z-[10] w-full py-8 px-8">
               <div className="logo flex gap-5">
                 <div className="lines flex flex-col gap-1">
@@ -97,12 +126,12 @@ function App() {
             </div>
             <div className="imagesdiv relative overflow-hidden w-full h-screen bg-red">
               <img
-                className="w-full sky scale-[1.2] h-full object-cover absolute top-0 left-0"
+                className="w-full sky scale-[1.4] rotate-[-20deg] h-full object-cover absolute top-0 left-0"
                 src="./sky.png"
                 alt=""
               />
               <img
-                className="w-full bg scale-[1.3] h-full object-cover absolute top-0 left-0"
+                className="w-full bg scale-[1.8] rotate-[-3deg] h-full object-cover absolute top-0 left-0"
                 src="./bg.png"
                 alt=""
               />
@@ -112,23 +141,23 @@ function App() {
                 <h1 className="text-[8rem] text leading-none -ml-20">auto</h1>
               </div>
               <img
-                className="absolute character -bottom-[50%] left-1/2 -translate-x-1/2 w-[40%]"
+                className="absolute character -bottom-[110%] left-1/2 -translate-x-1/2 w-[40%] scale-[3] rotate-[-20deg]"
                 src="./girlbg.png"
                 alt=""
               />
-            </div>
-            <div className="btmbar text-white absolute bottom-0 left-0 w-full py-15 px-10 bg-gradient-to-t from-black to-transparent">
-              <div className="flex gap-4 items-center">
-                <i className="text-4xl ri-arrow-down-line"></i>
-                <h3 className="text-xl font-[Helvetica_Now_Display]">
-                  Scroll down
-                </h3>
+              <div className="btmbar absolute text-white bottom-0 left-0 w-full py-15 px-10 bg-gradient-to-t from-black to-transparent">
+                <div className="flex gap-4 items-center">
+                  <i className="text-4xl ri-arrow-down-line"></i>
+                  <h3 className="text-xl font-[Helvetica_Now_Display]">
+                    Scroll down
+                  </h3>
+                </div>
+                <img
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[65px]"
+                  src="./ps5.png"
+                  alt=""
+                />
               </div>
-              <img
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[65px]"
-                src="./ps5.png"
-                alt=""
-              />
             </div>
           </div>
           <div className="w-full px-10 h-screen flex items-center justify-center bg-black">
